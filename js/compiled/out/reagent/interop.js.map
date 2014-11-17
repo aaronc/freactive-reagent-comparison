@@ -1,0 +1,7 @@
+{"version":3,
+ "file":
+ "/C:/Dev/__sandbox/test-reagent/resources/public/js/compiled/out/reagent/interop.js",
+ "sources":["interop.cljs"],
+ "lineCount":6,
+ "mappings":";AAAA;;AAEA,wBAAA,xBAAKA",
+ "names":["reagent.interop/fvars"]}
