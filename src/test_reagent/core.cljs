@@ -80,6 +80,22 @@
              (for [i (range n*) j (range n*)] [circle (nth rights i) (nth tops j)])
              (for [i (range n*) j (range n*)] [circle (nth rights i) (nth bottoms j)])])])
 
+(defn info []
+      (let [number-of-points
+            (reaction (let [n* @n n* (+ 1 (* 2 n*))] (* n* n*)))]
+           [:span
+            [:strong [:em [:a {:href "https://github.com/aaronc/freactive"} "freactive"]
+                      " performance test - reagent comparison version (this is reagent and react - not freactive!). "]
+             "N = " (str @n) " "
+             [:button {:on-click (fn [_] (swap! n dec))} "-"]
+             [:button {:on-click (fn [_] (swap! n inc))} "+"]
+             ", number of points = "
+             (str @number-of-points)
+             ", mouse at "
+             (str @mouse-x ", " @mouse-y)
+             ". "]])
+      )
+
 (defn view []
       [:div
        {:width "100%" :height "100%"}
@@ -89,20 +105,7 @@
                 {:position "absolute" :left 0 :top 0 :height "12px"
                  :font-size "12px"
                  :font-family "sans-serif"}}
-        (let [number-of-points
-              (reaction (let [n* @n n* (+ 1 (* 2 n*))] (* n* n*)))]
-             [:span
-              [:strong [:em [:a {:href "https://github.com/aaronc/freactive"} "freactive"]
-                        " performance test - reagent comparison version (this
-                         is reagent and react - not freactive!). "]
-               "N = " (str @n) " "
-               [:button {:on-click (fn [_] (swap! n dec))} "-"]
-               [:button {:on-click (fn [_] (swap! n inc))} "+"]
-               ", number of points = "
-               (str @number-of-points)
-               ", mouse at "
-               (str @mouse-x ", " @mouse-y)
-               ". "]])]
+       [info]]
        [graph]
        ])
 
